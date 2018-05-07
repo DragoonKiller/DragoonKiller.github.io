@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="通用编码规范针对所有可能使用到的编程语言.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="DragoonKiller">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="DK的通用代码规范"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="DragoonKiller&#39;s Expedition"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>DK的通用代码规范 - DragoonKiller&#39;s Expedition</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2018/03/28/dk-code-style/">
+                DK的通用代码规范
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018.03.28</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>通用编码规范针对所有可能使用到的编程语言.</p>
+<a id="more"></a>
+<h2 id="总则"><a href="#总则" class="headerlink" title="总则"></a>总则</h2><p>所有模糊的规定和认定都以此为标尺, 尽可能地契合此处阐述的规则.</p>
+<ol>
+<li>编写简单的代码而不是复杂的代码.</li>
+<li>优先考虑程序的可读性.</li>
+<li>编写简短的代码而不是冗长的代码.</li>
+<li>注释仅用于解释程序的编写思路,技巧和坑. 代码的功能, 参数的传递方式等, 尽可能用自身的名称描述, 而不是用注释.</li>
+<li>尽可能封装高性能代码, 不要让别人修改经过高度优化的代码, 尤其是在大量优化使得可读性和可维护性严重下降时.</li>
+</ol>
+<h2 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h2><p>类名, 结构体名, 函数名使用<strong>大驼峰</strong>.</p>
+<p>变量名, getter, setter 使用<strong>小驼峰</strong>.</p>
+<p>变量名和函数名中尽可能少地出现数字. 类名禁止出现数字, 除非该类仅用于存储数据.</p>
+<p>其它(如命名空间)参考语言规范.</p>
+<p>禁止使用下划线, 除非此变量不会显式地被使用, 例如<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> range(i, 0, bt) for(int i=0, lim___=bt;i&lt;=lim___;i++)</span></div></pre></td></tr></table></figure></p>
+<h2 id="格式规范"><a href="#格式规范" class="headerlink" title="格式规范"></a>格式规范</h2><p>所有双目运算符(包括赋值和初始化的等号)左右各一个空格. 尖括号和圆括号两边不能有空格, 除非与圆括号相邻的符号要求加空格.<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> c = (a + b) * d;</div><div class="line"><span class="keyword">int</span> x = F((<span class="number">1</span> + a) ^ c);</div><div class="line"><span class="keyword">int</span> v = x + (<span class="number">1</span> ^ c);</div><div class="line"><span class="keyword">if</span>(v != <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</div></pre></td></tr></table></figure></p>
+<p>对于lambda表达式所需的符号, 括号内侧不应有空格, lambda运算符两边各一个空格.<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">std</span>::function&lt;<span class="keyword">bool</span>(<span class="keyword">void</span>)&gt; x = []() -&gt; <span class="keyword">bool</span> &#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;; <span class="comment">// C++</span></div><div class="line">Func&lt;<span class="keyword">int</span>,<span class="keyword">int</span>,<span class="keyword">bool</span>&gt; F = (a, b) =&gt; a ^ b != <span class="number">1</span>; <span class="comment">// C#</span></div><div class="line">add = lambda x, y : x + y; <span class="comment">// python</span></div></pre></td></tr></table></figure></p>
+<p>所有二元位运算均需使用圆括号, 不论此括号是否改变运算顺序. 一元运算符不需要.<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> x = ((a &amp; b) | ~c) ^ c;</div></pre></td></tr></table></figure></p>
+<p>表示程序执行的大括号有且仅有两种写法. 第一种是和后面的代码单独成一语句. 此时花括号内部必须有且仅有一个和括号相邻的空格.<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> c)</span> </span>&#123; &#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="number">0</span>; &#125;</div><div class="line">Vector2 <span class="keyword">operator</span>*(Vector2 a, Vector2 b) &#123; <span class="keyword">return</span> a.x * b.x + a.y * b.y; &#125;</div></pre></td></tr></table></figure></p>
+<p>第二种是大括号分别占据两行, 行内不能有其它内容.<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> c)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="comment">// do nothing...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="comment">// A comment can be placed here...</span></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>表示数据初始化的大括号, 左花括号不换行, 此时左花括号前有一个空格.<br>右花括号的位置在最后一个数据之后, 可以视情况在前面插入一个空格.<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> v1[] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> &#125;;</div><div class="line"><span class="keyword">int</span> v2[] = &#123;</div><div class="line">    <span class="number">4</span>,</div><div class="line">    <span class="number">5</span>,</div><div class="line">    <span class="number">6</span>&#125;; <span class="comment">// 可以不加空格</span></div><div class="line"><span class="keyword">int</span> v3[] = &#123;</div><div class="line">    <span class="number">7</span>,</div><div class="line">    <span class="number">8</span>,</div><div class="line">    <span class="number">9</span> &#125;; <span class="comment">// 也可以带空格</span></div><div class="line"><span class="keyword">int</span> v4[] =</div><div class="line">    &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>&#125;; <span class="comment">// 花括号两边不能带空格</span></div></pre></td></tr></table></figure></p>
+<p>因单独一行过长而导致的截断, 采用4个空格缩进. lambda表达式可以在lambda符号之后破行, 此时该lambda表达式不缩进.<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">char</span> <span class="title">Convert</span><span class="params">(</span></span></div><div class="line"><span class="function"><span class="params">    <span class="keyword">int</span> LongLongLongLongParameter,</span></span></div><div class="line"><span class="function"><span class="params">    <span class="keyword">float</span> LongLongLongLongLongParameter)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">Map(a, (<span class="keyword">int</span> v) =&gt;</div><div class="line">&#123;</div><div class="line">    <span class="comment">// do something...</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line">Group(</div><div class="line">    <span class="keyword">int</span>[] LongLongLongLongParameter,</div><div class="line">    <span class="keyword">int</span>[] LongLongLongLongLongParameter,</div><div class="line">    (<span class="keyword">int</span> v) =&gt;</div><div class="line">    &#123;</div><div class="line">        <span class="comment">// do something...</span></div><div class="line">    &#125;,</div><div class="line">    <span class="keyword">int</span>[] OutputParameter);</div><div class="line"></div><div class="line">Map(</div><div class="line">    thisIsLongLongLongLongLongLongLongLongLongLongLongLongLongLongVariable,</div><div class="line">    (<span class="keyword">int</span> g) =&gt; &#123; <span class="keyword">return</span> g + <span class="number">2</span>; &#125;);</div></pre></td></tr></table></figure></p>
+<p>过长的参数表和初始化列表应完全破行, 右圆括号接在最后一个参数之后, 除非数据的分组有着直观的意义:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">F</span><span class="params">(</span></span></div><div class="line"><span class="function"><span class="params">    <span class="keyword">int</span> thisIsLongLongLongLongLongLongLongLongLongLongLongLongLongLongVariable,</span></span></div><div class="line"><span class="function"><span class="params">    <span class="keyword">int</span> b,</span></span></div><div class="line"><span class="function"><span class="params">    Ref&lt;<span class="keyword">int</span>&gt; c)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    ...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">CreateWindow</span><span class="params">(</span></span></div><div class="line"><span class="function"><span class="params">    <span class="keyword">int</span> width, <span class="keyword">int</span> height,</span></span></div><div class="line"><span class="function"><span class="params">    <span class="keyword">bool</span> fullscreen,</span></span></div><div class="line"><span class="function"><span class="params">    <span class="keyword">bool</span> resizable,</span></span></div><div class="line"><span class="function"><span class="params">    GBackend backend)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    ...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">float</span> <span class="title">dotMultiply</span><span class="params">(</span></span></div><div class="line"><span class="function"><span class="params">    <span class="keyword">float</span> x1, <span class="keyword">float</span> y1, <span class="keyword">float</span> z1</span></span></div><div class="line"><span class="function"><span class="params">    <span class="keyword">float</span> x2, <span class="keyword">float</span> y2, <span class="keyword">float</span> z2)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    ...</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">float</span> pointsWithUV[] = &#123;</div><div class="line">    <span class="number">-1</span>, <span class="number">-1</span>, <span class="number">0</span>, <span class="number">0</span>,</div><div class="line">    <span class="number">-1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>,</div><div class="line">    <span class="number">1</span>, <span class="number">-1</span>, <span class="number">1</span>, <span class="number">0</span>,</div><div class="line">    <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span> &#125;;</div></pre></td></tr></table></figure></p>
+<p>对于没有大括号的语言以及上述语法会造成语义模糊或语法错误的语言, 大括号格式以语言推荐的方式为准.</p>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    This is DragoonKiller's personal blog, using a DK-slightly-modified theme based on "Alpha-Test".
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2018/05/07/small things/">小记, 一些琐碎的东西</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/03/28/dk-code-style/">DK的通用代码规范</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/02/21/unity-extension/">Unity编辑器扩展踩坑</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/12/29/cmake-manual/">CMake 食用指南</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/DragoonKiller">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:947426443@qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @DragoonKiller (Weiyu Chen). All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="这篇文章介绍关于撰写UnityEditor扩展的所有知识和个人思考.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="DragoonKiller">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Unity编辑器扩展踩坑"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="DragoonKiller&#39;s Expedition"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>Unity编辑器扩展踩坑 - DragoonKiller&#39;s Expedition</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2018/02/21/unity-extension/">
+                Unity编辑器扩展踩坑
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2018.02.21</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>这篇文章介绍关于撰写UnityEditor扩展的所有知识和个人思考.</p>
+<a id="more"></a>
+<h2 id="自定义查看器-Custom-inspector"><a href="#自定义查看器-Custom-inspector" class="headerlink" title="自定义查看器 Custom inspector"></a>自定义查看器 Custom inspector</h2><p>在一般的自定义脚本中, Inspector展示脚本中各种变量的规则是按照所有可见元素(public元素和标有SerializedFiled的元素)依次排列. 你可以通过自定义查看器及其布局. Unity的GUI系统是一种即时GUI(Immediate GUI), 所以我们需要每帧申请查看器的内容, 像这样:<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">[<span class="meta">CustomEditor(typeof(Health))</span>]</div><div class="line">[<span class="meta">CanEditMultipleObjects</span>]</div><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">EInfoInspector</span> : <span class="title">Editor</span></div><div class="line">&#123;</div><div class="line">    <span class="comment">// 直译序列化对象. 实际上是某种游戏场景和Unity编辑器之间的通信协议的封装.</span></div><div class="line">    SerializedProperty health;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">OnEnable</span>(<span class="params"></span>)</span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="comment">// 把脚本中的某个值挂在到序列化对象中.</span></div><div class="line">        <span class="comment">// 注意只能挂载它提供的类型, 就是后面的 .xxxxValue.</span></div><div class="line">        <span class="comment">// 可以是引用类型 .objectReferenceValue.</span></div><div class="line">        <span class="comment">// 不能挂载到属性上(getter/setter).</span></div><div class="line">        health = serializedObject.FindProperty(<span class="string">"health"</span>);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="keyword">float</span> i = <span class="number">0</span>;</div><div class="line">    <span class="keyword">bool</span> turnOn = <span class="literal">false</span>;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnInspectorGUI</span>(<span class="params"></span>)</span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        <span class="comment">// 如果需要从现存的脚本对象中抓取某个值, 别忘了调用这一句.</span></div><div class="line">        serializedObject.Update();</div><div class="line">        </div><div class="line">        <span class="comment">// 注意这里. health.floatValue不仅是可读的, 还是可写的.</span></div><div class="line">        health.floatValue = EditorGUILayout.FloatField(<span class="string">"float in toggle example"</span>, health.floatValue);</div><div class="line">        </div><div class="line">        EditorGUILayout.BoundsField(<span class="string">"bounds example"</span>, <span class="keyword">new</span> Bounds(Vector3.zero, Vector3.one));</div><div class="line">        </div><div class="line">        turnOn = EditorGUILayout.BeginToggleGroup(<span class="string">"toggle example"</span>, turnOn);</div><div class="line">        <span class="keyword">if</span>(turnOn)</div><div class="line">        &#123;</div><div class="line">            <span class="comment">// 除了监视脚本属性之外, 你还可以干点别的...</span></div><div class="line">            i = EditorGUILayout.FloatField(<span class="string">"float example"</span>, i += <span class="number">0.2</span>);</div><div class="line">        </div><div class="line">            <span class="literal">false</span> = EditorGUILayout.BeginToggleGroup(<span class="string">"recursive toggle example"</span>,   <span class="literal">false</span>);</div><div class="line">            EditorGUILayout.EndToggleGroup();</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        EditorGUILayout.EndToggleGroup();</div><div class="line">        </div><div class="line">        <span class="comment">// 如果你的Inspector需要对某个脚本的属性赋值(例如上面的 health.floatValue = ...),</span></div><div class="line">        <span class="comment">// 别忘了调用这一句.</span></div><div class="line">        serializedObject.ApplyModifiedProperties();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>此后挂载<code>Health</code>脚本的物体上查看<code>Health</code>脚本的信息, 会直接使用这一布局.</p>
+<p><code>OnInspectorGUI</code>这个函数是每帧调用的. 在编辑器里(未运行调试的时候), 帧率会低于运行时的帧率.</p>
+<p>所有类似的函数都有一个返回值, 是从查看器里输入的值. 如果用户并没有输入, 那么返回值是参数里填的值.</p>
+<p><code>CanEditMultipleObjects</code>表示, 使用shift点选或者鼠标框选之后, 这个查看器可以同时所选所有脚本的值. 如果你同时框选了多个挂载了脚本的物体但是这些物体的参数值不一样, 参数会被强制同步到同一个值. 如果没有这个性质却选择了多个物体并尝试赋值, Unity会自动抛一个警告.</p>
+<p>这个功能对于获取复杂的对象和表格数据有很大帮助. 不过比较蛋疼的一点是, 出于耦合度和复杂程序的考虑我们不能总是把所有参数塞到一个脚本里, 但是这样的话我们要为每一个脚本像上文中展示的那样定制查看器. 并且为了定制查看器, 数据很可能需要一式两份, 在原来的类中改一下命名, 查看器这个类也要改.</p>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    This is DragoonKiller's personal blog, using a DK-slightly-modified theme based on "Alpha-Test".
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2018/05/07/small things/">小记, 一些琐碎的东西</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/03/28/dk-code-style/">DK的通用代码规范</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/02/21/unity-extension/">Unity编辑器扩展踩坑</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/12/29/cmake-manual/">CMake 食用指南</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/DragoonKiller">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:947426443@qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @DragoonKiller (Weiyu Chen). All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="果然还是躲不掉这个Cmake…本文介绍Cmake的基本使用方法和一些奇奇怪怪的坑.">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="DragoonKiller">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="CMake 食用指南"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="DragoonKiller&#39;s Expedition"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>CMake 食用指南 - DragoonKiller&#39;s Expedition</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/about.html">
+                    About
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/contact.html">
+                    Contact
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-cube" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2017/12/29/cmake-manual/">
+                CMake 食用指南
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2017.12.29</span>
+            
+            
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>果然还是躲不掉这个Cmake…<br>本文介绍Cmake的基本使用方法和一些奇奇怪怪的坑.</p>
+<a id="more"></a>
+<p>C++ 的编译步骤是, 先编译每一个源文件(*.cpp, *.c, …), 每个源文件会被输出成一个目标文件(*.o, *.obj). 把这些目标文件连同使用的库文件(library, *.lib, *.so, …) 链接, 生成一个可执行程序. </p>
+<p>Cmake让我们能够(相对)轻松地配置上述流程. 另外还提供一些对依赖库(dependence)的管理.</p>
+<h3 id="一个最简单的工程"><a href="#一个最简单的工程" class="headerlink" title="一个最简单的工程"></a>一个最简单的工程</h3><p>假设我们的工程在目录<code>~/Test</code>中.  </p>
+<p>在其中创建一个文件, 注意文件名不能变:<br><code>touch CMakeLists.txt</code>  </p>
+<p>打开这个文件, 写上:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"># 这是一行注释.</div><div class="line"># cmakelists的指令不区分大小写, 变量(variable)区分大小写.</div><div class="line"></div><div class="line"># 给我们的工程起一个名字, 输出文件名也会是这个.</div><div class="line">project(Test)</div><div class="line"></div><div class="line"># 注意这行不能省.</div><div class="line">cmake_mininum_required(VERSION 2.8)</div><div class="line"></div><div class="line"># 把目录里的所有源文件路径全部放入后面指定的变量中.</div><div class="line">aux_source_directory(./src SOURCES)</div><div class="line"></div><div class="line"># 编译链接.</div><div class="line"># 后面放的是所有源文件的路径, 这里使用了上面的变量.</div><div class="line">add_executable(Test &quot;$&#123;SOURCES&#125;&quot;)</div></pre></td></tr></table></figure></p>
+<p>写完后保存, 运行<br><code>cmake ./CMakeLists.txt</code>.<br>运行完毕后再运行<br><code>make</code>.</p>
+<p>你就可以在当前目录找到输出的文件了.</p>
+<blockquote>
+<p>注意,有些程序会通过<strong>在运行cmake时给出一些额外参数</strong>让工程文件生成在别的位置.</p>
+</blockquote>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>首先我们需要找到我们的库文件, 像这样:<br><code>find_library(GLFW glfw3 ./lib)</code><br>第一个参数是一个新建的变量, 第二个参数是我们要找的库名称, 第三个参数是指定在哪里寻找这个库.<br>如果找到了, 变量里会存放找到的库文件的绝对路径.<br>然后在最后链接:<br><code>target_link_libraries(Test &quot;${GLFW}&quot;)</code><br>注意这句话要写在<code>add_executable...</code>之后.</p>
+<h3 id="其它功能"><a href="#其它功能" class="headerlink" title="其它功能"></a>其它功能</h3><p>我们可以单独指定需要编译的文件:<br><code>set(SOURCES &quot;./main.cpp&quot;)</code><br>注意这个SOURCES可以是我们定义过的变量; set指令向变量后面添加一个字符串.</p>
+<p>可以单独指定一些include目录:<br><code>include_directories(./include)</code><br>效果和在编译选项中添加<code>-I./include</code>相同.</p>
+<p>指定额外的编译选项, 比如:<br><code>add_compile_options(-O2 -Wall -std=c++11)</code></p>
+<p>cmake可以在运行的时候想控制台输出字符串, 例如:<br><code>message(&quot;:: Using compiler: ${CMAKE_CXX_COMPILER}&quot;)</code><br><code>message(WARNING &quot;:: Sources: ${SOURCES}&quot;)</code>   </p>
+<p>在从控制台运行cmake的时候可以使用–build参数指定输出目录:<br><code>cmake . --build ./bin/</code></p>
+
+    </div>
+
+    
+
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    This is DragoonKiller's personal blog, using a DK-slightly-modified theme based on "Alpha-Test".
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2018/05/07/small things/">小记, 一些琐碎的东西</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/03/28/dk-code-style/">DK的通用代码规范</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2018/02/21/unity-extension/">Unity编辑器扩展踩坑</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2017/12/29/cmake-manual/">CMake 食用指南</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/DragoonKiller">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:947426443@qq.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @DragoonKiller (Weiyu Chen). All right reserved | Design & Hexo <a href="http://www.codeblocq.com/">Jonathan Klughertz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
